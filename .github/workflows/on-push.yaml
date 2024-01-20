@@ -4,6 +4,7 @@ env:
   APP_NAME: alpine-node-libreoffice
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
