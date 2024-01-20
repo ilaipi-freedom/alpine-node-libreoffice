@@ -18,10 +18,6 @@ inputs:
   dockerhub_username:
     description: Dockerhub Container Registry Username
     required: false
-  dockerhub_organization:
-    description: Dockerhub Container Registry Organization
-    required: false
-    default: bcgovimages
   dockerhub_token:
     description: Dockerhub Container Registry Authorization Token
     required: false
@@ -58,7 +54,8 @@ runs:
       uses: docker/metadata-action@v4
       with:
         images: |
-          docker.io/${{ inputs.dockerhub_organization }}/${{ inputs.image_name }},enable=${{ env.HAS_DOCKERHUB }}
+          ghcr.io/${{ inputs.dockerhub_username }}/${{ inputs.image_name }}
+          docker.io/${{ inputs.dockerhub_username }}/${{ inputs.image_name }},enable=${{ env.HAS_DOCKERHUB }}
         # Always updates the 'latest' tag
         flavor: |
           latest=true
