@@ -6,7 +6,6 @@ ARG APP_ROOT=/opt/app-root/src
 ENV NO_UPDATE_NOTIFIER=true \
   PATH="/usr/lib/libreoffice/program:${PATH}" \
   PYTHONUNBUFFERED=1
-WORKDIR ${APP_ROOT}
 
 # Install LibreOffice & Common Fonts
 RUN apk --no-cache add bash libreoffice util-linux \
@@ -18,6 +17,11 @@ RUN apk --no-cache add msttcorefonts-installer fontconfig && \
   update-ms-fonts && \
   fc-cache -f && \
   rm -rf /var/cache/apk/*
+WORKDIR /usr/share/fonts/
+
+COPY ./仿*.ttf ./
+
+WORKDIR ${APP_ROOT}
 
 # Fix Python/LibreOffice Integration
 COPY support ${APP_ROOT}/support

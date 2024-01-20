@@ -60,12 +60,7 @@ runs:
           latest=true
         # Creates tags based off of branch names and semver tags
         tags: |
-          type=ref,event=branch
-          type=ref,event=pr
-          type=semver,pattern={{version}}
-          type=semver,pattern={{major}}.{{minor}}
-          type=semver,pattern={{major}}
-          type=sha
+          14.21.3
 
     - name: Build and Push to Container Registry
       id: builder
@@ -75,8 +70,3 @@ runs:
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
-
-    - name: Inspect Docker Image
-      shell: bash
-      run: |
-        docker image inspect ghcr.io/${{ env.GH_USERNAME }}/${{ inputs.image_name }}:latest
