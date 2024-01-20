@@ -58,7 +58,6 @@ runs:
       uses: docker/metadata-action@v4
       with:
         images: |
-          ghcr.io/${{ env.GH_USERNAME }}/${{ inputs.image_name }}
           docker.io/${{ inputs.dockerhub_organization }}/${{ inputs.image_name }},enable=${{ env.HAS_DOCKERHUB }}
         # Always updates the 'latest' tag
         flavor: |
