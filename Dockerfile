@@ -19,7 +19,7 @@ RUN apk --no-cache add msttcorefonts-installer fontconfig && \
   rm -rf /var/cache/apk/*
 WORKDIR /usr/share/fonts/
 
-COPY ./仿*.ttf ./
+COPY ./fang*.ttf ./
 
 WORKDIR ${APP_ROOT}
 
