@@ -17,6 +17,22 @@ RUN apk --no-cache add msttcorefonts-installer fontconfig && \
   update-ms-fonts && \
   fc-cache -f && \
   rm -rf /var/cache/apk/*
+
+
+# For node-canvas
+RUN apk add --no-cache --virtual .build-deps \
+        build-base \
+	g++ \
+	cairo-dev \
+	jpeg-dev \
+	pango-dev \
+	giflib-dev \
+    && apk add --no-cache --virtual .runtime-deps \
+        cairo \
+	jpeg \
+	pango \
+	giflib
+
 WORKDIR /usr/share/fonts/
 
 COPY ./fang*.ttf ./
