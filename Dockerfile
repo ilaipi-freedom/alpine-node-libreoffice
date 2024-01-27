@@ -31,7 +31,8 @@ RUN apk add --no-cache --virtual .build-deps \
         cairo \
 	jpeg \
 	pango \
-	giflib
+	giflib \
+	tzdata
 
 WORKDIR /usr/share/fonts/
 
@@ -47,3 +48,6 @@ RUN chmod a+rx ${APP_ROOT}/support/bindPython.sh \
 # NPM Permission Fix
 RUN mkdir -p /.npm
 RUN chown -R 1001:0 /.npm
+
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo "Asia/Shanghai" > /etc/timezone
